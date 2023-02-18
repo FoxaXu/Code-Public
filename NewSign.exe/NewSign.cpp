@@ -91,7 +91,8 @@ PassCheck:
 		else
 		{
 			cout << "NewSign requires some auxiliary files, " << endl;
-			cout << "and some of the code cannot be executed because it cannot be connected to the server" << endl;
+			cout << "Cannot Connect Server. Please check your Internet" << endl;
+			getchar();
 			return 0;
 		}
 	}
