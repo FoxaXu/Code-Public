@@ -193,19 +193,19 @@ WaitProcess:
 	ReadPoint.close();
 	remove("CleanCode.tmp");
 
-	WritePoint.open("C:\$OutCertFile.ps1");
+	WritePoint.open("C:\\$OutCertFile.ps1");
 
 	WritePoint << "$password = ConvertTo-SecureString -String " + Password + " -Force -AsPlainText" << endl;
 	WritePoint << "Export-PfxCertificate -cert " + quo + "Cert:\\CurrentUser\\My\\" + Thumbprint + quo + " -FilePath " + outfile + " -Password $password" << endl;
 	WritePoint.close();
 
-	WritePoint.open("C:\$OutCertScript.bat");
-	WritePoint << "PowerShell C:\$OutCertFile.ps1" << endl;
-	WritePoint << "del C:\$OutCertScript.bat" << endl;
+	WritePoint.open("C:\\$OutCertScript.bat");
+	WritePoint << "PowerShell C:\\$OutCertFile.ps1" << endl;
+	WritePoint << "del C:\\$OutCertScript.bat" << endl;
 	WritePoint.close();
 
-	ShellExecute(0, L"runas", L"C:\$OutCertScript.bat", 0, 0, SW_HIDE);
-	string OCSFile = "C:\$OutCertScript.bat";
+	ShellExecute(0, L"runas", L"C:\\$OutCertScript.bat", 0, 0, SW_HIDE);
+	string OCSFile = "C:\\$OutCertScript.bat";
 WaitReturnOCS:	
 	bool retWROCS = existcheck(OCSFile);
 	if (retWROCS) {
@@ -216,7 +216,7 @@ WaitReturnOCS:
 
 	// 验证证书是否正常导出
 	bool retCertOut = existcheck(outfile);
-	remove("C:\$OutCertFile.ps1");
+	remove("C:\\$OutCertFile.ps1");
 	remove("C:\\$CreateScript.ps1");
 	
 	if (retCertOut) {
